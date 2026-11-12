@@ -63,10 +63,25 @@ export function days(n: number): string {
 }
 
 /**
- * Age of a backlog card: "3 days", "1 week", "2 weeks", "1 month".
- * Under a day reads as "today".
+ * Under a day, from a full timestamp: "just now", "12 minutes", "5 hours". Otherwise null.
+ * Counted from the exact moment, so 50 minutes after midnight is not "yesterday".
  */
-export function age(fromIso: string, today: string): string {
+function sinceExact(fromIso: string, now?: string): string | null {
+  if (fromIso.length <= 10 || !now) return null;
+  const mins = Math.max(0, Math.floor((toTime(now) - toTime(fromIso)) / 60_000));
+  if (mins < 1) return 'just now';
+  if (mins < 60) return plural(mins, 'minute');
+  if (mins < 24 * 60) return plural(Math.floor(mins / 60), 'hour');
+  return null;
+}
+
+/**
+ * Age of a backlog card: "3 days", "1 week", "2 weeks", "1 month".
+ * Under a day reads "5 hours" when the exact time is known, otherwise "today".
+ */
+export function age(fromIso: string, today: string, now?: string): string {
+  const exact = sinceExact(fromIso, now);
+  if (exact) return exact;
   const d = Math.max(0, daysBetween(fromIso, today));
   if (d === 0) return 'today';
   if (d < 14 && d !== 7) return days(d);
@@ -76,19 +91,15 @@ export function age(fromIso: string, today: string): string {
 }
 
 /**
- * "4 hours ago", "yesterday", "3 days ago". Hours are used only when a full timestamp
- * and the current moment are known; a calendar date from today reads "today".
+ * "12 minutes ago", "4 hours ago", "yesterday", "3 days ago". Minutes and hours are used
+ * only when a full timestamp and the current moment are known; a calendar date from
+ * today reads "today".
  */
 export function ago(iso: string, today: string, now?: string): string {
+  const exact = sinceExact(iso, now);
+  if (exact) return exact === 'just now' ? exact : `${exact} ago`;
   const d = daysBetween(iso, today);
-  if (d <= 0) {
-    if (iso.length > 10 && now) {
-      const hours = Math.floor((toTime(now) - toTime(iso)) / 3_600_000);
-      if (hours < 1) return 'just now';
-      return `${plural(hours, 'hour')} ago`;
-    }
-    return 'today';
-  }
+  if (d <= 0) return 'today';
   if (d === 1) return 'yesterday';
   if (d < 14) return `${days(d)} ago`;
   return `${age(iso, today)} ago`;

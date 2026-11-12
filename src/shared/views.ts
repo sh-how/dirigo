@@ -448,7 +448,7 @@ export function workCard(c: Classified, ds: Dataset): WorkCard {
     const who = owner(it, ds);
     const firstLabel = it.labels[0] ? `${capitalise(it.labels[0])} · ` : '';
     if (c.stage === 'backlog') {
-      meta = [{ text: `${n} · ${age(it.created, ds.today)} · ` }, who ? { text: who } : { text: 'no owner', strong: true }];
+      meta = [{ text: `${n} · ${age(it.created, ds.today, ds.now)} · ` }, who ? { text: who } : { text: 'no owner', strong: true }];
       board = [{ text: `${ref} · ${firstLabel}opened ${ago(it.created, ds.today, ds.now)}${who ? '' : ' · no owner yet'}` }];
     } else {
       const upd = `updated ${ago(it.last_activity, ds.today, ds.now)}`;
