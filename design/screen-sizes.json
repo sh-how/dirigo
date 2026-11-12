@@ -1,0 +1,54 @@
+{
+  "01-landing": [
+    1440,
+    2019
+  ],
+  "02-connect-github": [
+    1440,
+    860
+  ],
+  "03-choose-repositories": [
+    1440,
+    980
+  ],
+  "04-today": [
+    1440,
+    1280
+  ],
+  "05-all-work": [
+    1440,
+    1506
+  ],
+  "06-repositories": [
+    1440,
+    900
+  ],
+  "07-repository": [
+    1440,
+    1080
+  ],
+  "08-reviews": [
+    1440,
+    1080
+  ],
+  "09-milestones": [
+    1440,
+    980
+  ],
+  "10-settings": [
+    1440,
+    1322
+  ],
+  "11-today-empty-no-repositories": [
+    1440,
+    820
+  ],
+  "12-today-empty-nothing-blocked": [
+    1440,
+    900
+  ],
+  "13-all-work-empty-columns": [
+    1440,
+    960
+  ]
+}

@@ -1,0 +1,970 @@
+{
+  "about": "Invented sample data matching the Dirigo mockups. The 'expected' blocks are what the rules in docs/04-data-and-rules.md must produce; do not read them as inputs. Eleven backlog issues are not listed individually and appear only as 'unlisted_backlog_issues' per repository; treat them as assigned, on-track backlog issues. Each repository's milestone 'open' and 'closed' counts are authoritative; the milestone field on items covers the listed items only.",
+  "today": "2026-11-11",
+  "viewer": "you",
+  "settings": {
+    "review_target_days": 2,
+    "stalled_after_days": 5,
+    "failing_checks_block_after_days": 1,
+    "pace_window_days": 14,
+    "in_progress_rule": "linked_pull_request"
+  },
+  "repositories": [
+    {
+      "full_name": "lattice-db/lattice",
+      "owner": "lattice-db",
+      "name": "lattice",
+      "unlisted_backlog_issues": 6,
+      "milestone": {
+        "title": "v0.9",
+        "due": "2026-11-21",
+        "open": 15,
+        "closed": 24,
+        "closed_in_pace_window": 14
+      },
+      "expected": {
+        "stage_counts": {
+          "backlog": 9,
+          "in_progress": 2,
+          "needs_review": 2,
+          "open_pull_requests": 3
+        },
+        "open_items": 16,
+        "status": "behind",
+        "milestone": {
+          "percent_done": 62,
+          "landing": "2026-11-26",
+          "difference_days": -5,
+          "status": "late"
+        }
+      }
+    },
+    {
+      "full_name": "northwind/api",
+      "owner": "northwind",
+      "name": "api",
+      "unlisted_backlog_issues": 4,
+      "milestone": {
+        "title": "November release",
+        "due": "2026-11-18",
+        "open": 4,
+        "closed": 14,
+        "closed_in_pace_window": 8
+      },
+      "expected": {
+        "stage_counts": {
+          "backlog": 7,
+          "in_progress": 2,
+          "needs_review": 1,
+          "open_pull_requests": 3
+        },
+        "open_items": 13,
+        "status": "at_risk",
+        "milestone": {
+          "percent_done": 78,
+          "landing": "2026-11-18",
+          "difference_days": 0,
+          "status": "at_risk"
+        }
+      }
+    },
+    {
+      "full_name": "northwind/web-app",
+      "owner": "northwind",
+      "name": "web-app",
+      "unlisted_backlog_issues": 1,
+      "milestone": {
+        "title": "Q4 polish",
+        "due": "2026-12-12",
+        "open": 3,
+        "closed": 17,
+        "closed_in_pace_window": 2
+      },
+      "expected": {
+        "stage_counts": {
+          "backlog": 4,
+          "in_progress": 1,
+          "needs_review": 0,
+          "open_pull_requests": 2
+        },
+        "open_items": 7,
+        "status": "on_track",
+        "milestone": {
+          "percent_done": 85,
+          "landing": "2026-12-02",
+          "difference_days": 10,
+          "status": "on_track"
+        }
+      }
+    },
+    {
+      "full_name": "papertrail-ui/kit",
+      "owner": "papertrail-ui",
+      "name": "kit",
+      "unlisted_backlog_issues": 0,
+      "milestone": {
+        "title": "v2.0",
+        "due": "2027-01-15",
+        "open": 9,
+        "closed": 6,
+        "closed_in_pace_window": 2
+      },
+      "expected": {
+        "stage_counts": {
+          "backlog": 3,
+          "in_progress": 1,
+          "needs_review": 1,
+          "open_pull_requests": 1
+        },
+        "open_items": 6,
+        "status": "on_track",
+        "milestone": {
+          "percent_done": 40,
+          "landing": "2027-01-13",
+          "difference_days": 2,
+          "status": "on_track"
+        }
+      }
+    }
+  ],
+  "items": [
+    {
+      "repository": "lattice-db/lattice",
+      "number": 482,
+      "kind": "issue",
+      "title": "Compaction stalls when the log exceeds 4 GB",
+      "labels": [
+        "bug"
+      ],
+      "assignees": [],
+      "created": "2026-11-08",
+      "last_activity": "2026-11-08",
+      "milestone": "v0.9",
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": true,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 476,
+      "kind": "issue",
+      "title": "Range scan returns duplicates after a split",
+      "labels": [
+        "bug"
+      ],
+      "assignees": [],
+      "created": "2026-11-03",
+      "last_activity": "2026-11-03",
+      "milestone": "v0.9",
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": true,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 470,
+      "kind": "issue",
+      "title": "Expose compaction metrics",
+      "labels": [
+        "enhancement"
+      ],
+      "assignees": [
+        "J. Lin"
+      ],
+      "created": "2026-10-28",
+      "last_activity": "2026-10-28",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 467,
+      "kind": "issue",
+      "title": "Streaming snapshot restore",
+      "labels": [],
+      "assignees": [
+        "M. Tanaka"
+      ],
+      "created": "2026-10-20",
+      "last_activity": "2026-11-10",
+      "milestone": "v0.9",
+      "linked_open_pull_request": 490,
+      "expected": {
+        "stage": "in_progress",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 459,
+      "kind": "issue",
+      "title": "Reduce write stalls under load",
+      "labels": [],
+      "assignees": [
+        "J. Lin"
+      ],
+      "created": "2026-10-14",
+      "last_activity": "2026-11-08",
+      "milestone": "v0.9",
+      "linked_open_pull_request": 479,
+      "expected": {
+        "stage": "in_progress",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 479,
+      "kind": "pull_request",
+      "title": "Parallelise segment merges",
+      "author": "J. Lin",
+      "draft": false,
+      "review_decision": "REVIEW_REQUIRED",
+      "requested_reviewers": [
+        "M. Tanaka"
+      ],
+      "changes_requested_by": null,
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": "2026-11-05",
+      "last_activity": "2026-11-05",
+      "milestone": "v0.9",
+      "files_changed": 11,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "needs_review",
+        "bucket": "blocked",
+        "waiting_on": [
+          "M. Tanaka"
+        ],
+        "wait_days": 6,
+        "past_review_target": true,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 491,
+      "kind": "pull_request",
+      "title": "Bound memory use during range scans",
+      "author": "J. Lin",
+      "draft": false,
+      "review_decision": "REVIEW_REQUIRED",
+      "requested_reviewers": [
+        "you"
+      ],
+      "changes_requested_by": null,
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": "2026-11-07",
+      "last_activity": "2026-11-07",
+      "milestone": "v0.9",
+      "files_changed": 6,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "needs_review",
+        "bucket": "needs_your_decision",
+        "waiting_on": [
+          "you"
+        ],
+        "wait_days": 4,
+        "past_review_target": true,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 493,
+      "kind": "pull_request",
+      "title": "Bump test fixtures",
+      "author": "J. Lin",
+      "draft": false,
+      "review_decision": "APPROVED",
+      "requested_reviewers": [],
+      "changes_requested_by": null,
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": null,
+      "last_activity": "2026-11-10",
+      "milestone": null,
+      "files_changed": 2,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": true
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 488,
+      "kind": "pull_request",
+      "title": "Document the on-disk format v3",
+      "author": "M. Tanaka",
+      "draft": false,
+      "review_decision": "CHANGES_REQUESTED",
+      "requested_reviewers": [],
+      "changes_requested_by": "J. Lin",
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": "2026-11-09",
+      "last_activity": "2026-11-09",
+      "milestone": null,
+      "files_changed": 3,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "on_track",
+        "waiting_on": [
+          "M. Tanaka"
+        ],
+        "wait_days": 2,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "lattice-db/lattice",
+      "number": 490,
+      "kind": "pull_request",
+      "title": "Snapshot restore",
+      "author": "M. Tanaka",
+      "draft": true,
+      "review_decision": null,
+      "requested_reviewers": [],
+      "changes_requested_by": null,
+      "checks": "none",
+      "checks_failing_since": null,
+      "waiting_since": null,
+      "last_activity": "2026-11-10",
+      "milestone": null,
+      "files_changed": 9,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1207,
+      "kind": "issue",
+      "title": "Rate limiter ignores per-tenant overrides",
+      "labels": [
+        "bug"
+      ],
+      "assignees": [],
+      "created": "2026-11-04",
+      "last_activity": "2026-11-04",
+      "milestone": "November release",
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": true,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1201,
+      "kind": "issue",
+      "title": "Paginate the audit log endpoint",
+      "labels": [],
+      "assignees": [
+        "C. Okafor"
+      ],
+      "created": "2026-10-28",
+      "last_activity": "2026-10-28",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1198,
+      "kind": "issue",
+      "title": "Return a conflict error on duplicate invoices",
+      "labels": [],
+      "assignees": [
+        "you"
+      ],
+      "created": "2026-10-21",
+      "last_activity": "2026-10-21",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1189,
+      "kind": "issue",
+      "title": "Move webhook retries to the job queue",
+      "labels": [],
+      "assignees": [
+        "you"
+      ],
+      "created": "2026-10-19",
+      "last_activity": "2026-11-11",
+      "milestone": "November release",
+      "linked_open_pull_request": 1214,
+      "expected": {
+        "stage": "in_progress",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1175,
+      "kind": "issue",
+      "title": "Rotate signing keys without downtime",
+      "labels": [],
+      "assignees": [
+        "C. Okafor"
+      ],
+      "created": "2026-10-12",
+      "last_activity": "2026-11-09",
+      "milestone": null,
+      "linked_open_pull_request": 1209,
+      "expected": {
+        "stage": "in_progress",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1210,
+      "kind": "pull_request",
+      "title": "Add idempotency keys to payment endpoints",
+      "author": "you",
+      "draft": false,
+      "review_decision": "REVIEW_REQUIRED",
+      "requested_reviewers": [
+        "C. Okafor"
+      ],
+      "changes_requested_by": null,
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": "2026-11-09",
+      "last_activity": "2026-11-09",
+      "milestone": "November release",
+      "files_changed": 4,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "needs_review",
+        "bucket": "on_track",
+        "waiting_on": [
+          "C. Okafor"
+        ],
+        "wait_days": 2,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1214,
+      "kind": "pull_request",
+      "title": "Webhook retries on the job queue",
+      "author": "you",
+      "draft": true,
+      "review_decision": null,
+      "requested_reviewers": [],
+      "changes_requested_by": null,
+      "checks": "failing",
+      "checks_failing_since": "2026-11-09",
+      "waiting_since": null,
+      "last_activity": "2026-11-09",
+      "milestone": "November release",
+      "files_changed": 7,
+      "failing_check_count": 2,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "blocked",
+        "waiting_on": [
+          "you"
+        ],
+        "wait_days": 2,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1212,
+      "kind": "pull_request",
+      "title": "Upgrade the database client",
+      "author": "C. Okafor",
+      "draft": false,
+      "review_decision": "APPROVED",
+      "requested_reviewers": [],
+      "changes_requested_by": null,
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": null,
+      "last_activity": "2026-11-10",
+      "milestone": null,
+      "files_changed": 2,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": true
+      }
+    },
+    {
+      "repository": "northwind/api",
+      "number": 1209,
+      "kind": "pull_request",
+      "title": "Rotate signing keys: accept both keys",
+      "author": "C. Okafor",
+      "draft": false,
+      "review_decision": "CHANGES_REQUESTED",
+      "requested_reviewers": [],
+      "changes_requested_by": "you",
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": "2026-11-08",
+      "last_activity": "2026-11-08",
+      "milestone": null,
+      "files_changed": 5,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "on_track",
+        "waiting_on": [
+          "C. Okafor"
+        ],
+        "wait_days": 3,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/web-app",
+      "number": 751,
+      "kind": "issue",
+      "title": "Dark mode flickers on first load",
+      "labels": [
+        "bug"
+      ],
+      "assignees": [],
+      "created": "2026-11-09",
+      "last_activity": "2026-11-09",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": true,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/web-app",
+      "number": 748,
+      "kind": "issue",
+      "title": "Export invoices as a spreadsheet",
+      "labels": [
+        "enhancement"
+      ],
+      "assignees": [
+        "P. Nair"
+      ],
+      "created": "2026-11-04",
+      "last_activity": "2026-11-04",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/web-app",
+      "number": 739,
+      "kind": "issue",
+      "title": "Keyboard shortcuts for the inbox",
+      "labels": [
+        "enhancement"
+      ],
+      "assignees": [
+        "P. Nair"
+      ],
+      "created": "2026-10-21",
+      "last_activity": "2026-10-21",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/web-app",
+      "number": 733,
+      "kind": "issue",
+      "title": "Billing page: replace polling with server events",
+      "labels": [],
+      "assignees": [
+        "you"
+      ],
+      "created": "2026-10-26",
+      "last_activity": "2026-11-11",
+      "milestone": "Q4 polish",
+      "linked_open_pull_request": 744,
+      "expected": {
+        "stage": "in_progress",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/web-app",
+      "number": 744,
+      "kind": "pull_request",
+      "title": "Billing page: server events instead of polling",
+      "author": "you",
+      "draft": false,
+      "review_decision": "CHANGES_REQUESTED",
+      "requested_reviewers": [],
+      "changes_requested_by": "P. Nair",
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": "2026-11-09",
+      "last_activity": "2026-11-09",
+      "milestone": "Q4 polish",
+      "files_changed": 8,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "needs_your_decision",
+        "waiting_on": [
+          "you"
+        ],
+        "wait_days": 2,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "northwind/web-app",
+      "number": 741,
+      "kind": "pull_request",
+      "title": "Upgrade router and remove legacy redirects",
+      "author": "P. Nair",
+      "draft": false,
+      "review_decision": "APPROVED",
+      "requested_reviewers": [],
+      "changes_requested_by": null,
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": null,
+      "last_activity": "2026-11-10",
+      "milestone": null,
+      "files_changed": 14,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": true
+      }
+    },
+    {
+      "repository": "papertrail-ui/kit",
+      "number": 94,
+      "kind": "issue",
+      "title": "Tooltip clips at the viewport edge",
+      "labels": [
+        "bug"
+      ],
+      "assignees": [],
+      "created": "2026-11-06",
+      "last_activity": "2026-11-06",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": true,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "papertrail-ui/kit",
+      "number": 96,
+      "kind": "issue",
+      "title": "Date picker should accept ISO week numbers",
+      "labels": [
+        "enhancement"
+      ],
+      "assignees": [
+        "A. Rao"
+      ],
+      "created": "2026-10-28",
+      "last_activity": "2026-10-28",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "papertrail-ui/kit",
+      "number": 90,
+      "kind": "issue",
+      "title": "Add a skeleton loader component",
+      "labels": [
+        "enhancement"
+      ],
+      "assignees": [
+        "A. Rao"
+      ],
+      "created": "2026-10-11",
+      "last_activity": "2026-10-11",
+      "milestone": null,
+      "linked_open_pull_request": null,
+      "expected": {
+        "stage": "backlog",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "papertrail-ui/kit",
+      "number": 88,
+      "kind": "issue",
+      "title": "Rework the tabs component for overflow",
+      "labels": [],
+      "assignees": [
+        "A. Rao"
+      ],
+      "created": "2026-10-22",
+      "last_activity": "2026-11-10",
+      "milestone": "v2.0",
+      "linked_open_pull_request": 99,
+      "expected": {
+        "stage": "in_progress",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "papertrail-ui/kit",
+      "number": 101,
+      "kind": "pull_request",
+      "title": "Fix focus trap in nested dialogs",
+      "author": "A. Rao",
+      "draft": false,
+      "review_decision": "REVIEW_REQUIRED",
+      "requested_reviewers": [
+        "you"
+      ],
+      "changes_requested_by": null,
+      "checks": "passing",
+      "checks_failing_since": null,
+      "waiting_since": "2026-11-10",
+      "last_activity": "2026-11-10",
+      "milestone": "v2.0",
+      "files_changed": 3,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "needs_review",
+        "bucket": "needs_your_decision",
+        "waiting_on": [
+          "you"
+        ],
+        "wait_days": 1,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    },
+    {
+      "repository": "papertrail-ui/kit",
+      "number": 99,
+      "kind": "pull_request",
+      "title": "Tabs: scroll when they overflow",
+      "author": "A. Rao",
+      "draft": true,
+      "review_decision": null,
+      "requested_reviewers": [],
+      "changes_requested_by": null,
+      "checks": "none",
+      "checks_failing_since": null,
+      "waiting_since": null,
+      "last_activity": "2026-11-10",
+      "milestone": null,
+      "files_changed": 4,
+      "failing_check_count": 0,
+      "expected": {
+        "stage": "open_pull_requests",
+        "bucket": "on_track",
+        "waiting_on": [],
+        "wait_days": null,
+        "past_review_target": false,
+        "no_owner": false,
+        "ready_to_merge": false
+      }
+    }
+  ],
+  "expected": {
+    "open_items": 42,
+    "stage_counts": {
+      "backlog": 23,
+      "in_progress": 6,
+      "needs_review": 4,
+      "open_pull_requests": 9
+    },
+    "buckets": {
+      "blocked": 2,
+      "needs_your_decision": 3,
+      "on_track": 37
+    },
+    "blocked": [
+      "lattice-db/lattice#479",
+      "northwind/api#1214"
+    ],
+    "waiting_on_you": [
+      "lattice-db/lattice#491",
+      "northwind/web-app#744",
+      "papertrail-ui/kit#101"
+    ],
+    "past_review_target": [
+      "lattice-db/lattice#479",
+      "lattice-db/lattice#491"
+    ],
+    "no_owner": [
+      "lattice-db/lattice#476",
+      "lattice-db/lattice#482",
+      "northwind/api#1207",
+      "northwind/web-app#751",
+      "papertrail-ui/kit#94"
+    ],
+    "ready_to_merge": [
+      "lattice-db/lattice#493",
+      "northwind/api#1212",
+      "northwind/web-app#741"
+    ]
+  }
+}
