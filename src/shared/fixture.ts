@@ -69,7 +69,7 @@ export function datasetFromFixture(f: Fixture, overrides: Partial<Settings> = {}
     items: f.items.map((raw) => {
       const { expected: _expected, ...item } = raw;
       void _expected;
-      return { labels: [], ...item, url: null } as Item;
+      return { ...item, labels: (item as { labels?: string[] }).labels ?? [], url: null } as Item;
     }),
   };
 }
