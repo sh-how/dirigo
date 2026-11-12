@@ -117,3 +117,16 @@ for (const path of ['/', '/connect', '/sample/setup/repositories', '/sample/toda
     expect(overflow).toBeLessThanOrEqual(0);
   });
 }
+
+test('an expanded cell or column can be collapsed again', async ({ page }) => {
+  await page.goto('/sample/work');
+  await page.getByRole('button', { name: 'Show 6 more in lattice' }).click();
+  await expect(page.getByRole('button', { name: 'Show 6 more in lattice' })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Show fewer in lattice' }).click();
+  await expect(page.getByRole('button', { name: 'Show 6 more in lattice' })).toBeVisible();
+
+  await page.goto('/sample/repositories/lattice-db/lattice');
+  await page.getByRole('button', { name: 'Show 6 more' }).click();
+  await page.getByRole('button', { name: 'Show fewer' }).click();
+  await expect(page.getByRole('button', { name: 'Show 6 more' })).toBeVisible();
+});

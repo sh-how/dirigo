@@ -41,10 +41,13 @@ function Cell({ cell, row, selected, onSelect, showRepo }: { cell: WorkCell; row
     <div className="cell">
       {visible.map((c) => <WorkCardView key={c.key} card={c} showRepo={showRepo} selected={selected === c.key} onSelect={() => onSelect(c.key)} />)}
       {!open && more > 0 && (
-        <button className="cell-more" aria-label={`Show ${more} more in ${row.title}`} onClick={() => setOpen(true)}>{more} more</button>
+        <button className="cell-more" aria-expanded="false" aria-label={`Show ${more} more in ${row.title}`} onClick={() => setOpen(true)}>{more} more</button>
       )}
       {open && cell.unlisted > 0 && (
         <span className="cell-note">{plural(cell.unlisted, 'more issue')} {cell.unlisted === 1 ? 'is' : 'are'} counted but not listed in the sample data.</span>
+      )}
+      {open && (
+        <button className="cell-more" aria-expanded="true" aria-label={`Show fewer in ${row.title}`} onClick={() => setOpen(false)}>Show fewer</button>
       )}
     </div>
   );

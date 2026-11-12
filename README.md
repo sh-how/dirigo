@@ -49,7 +49,19 @@ npm run build && npm run test:e2e
 
 Live mode needs Postgres, a GitHub App and an encryption key. Copy [`.env.example`](.env.example) to `.env`, fill it in, and start with `node --env-file=.env dist/server/server/main.js` after `npm run build`.
 
-### Register the GitHub App
+### Quick start on your own machine
+
+```bash
+docker compose up -d
+```
+
+```bash
+node tools/register-github-app.mjs
+```
+
+Open <http://localhost:3999>, press **Continue to GitHub**, check the read-only permissions and create the app. The helper writes its credentials and a fresh encryption key to `.env`, which is git-ignored. Install the app from the link it shows, then run `npm run dev` and sign in at <http://localhost:5180/connect>. GitHub does not accept a `localhost` webhook, so a local app has none; the 15-minute reconciliation keeps data current.
+
+### Register the GitHub App by hand
 
 Create one app per environment (GitHub → Settings → Developer settings → GitHub Apps → New GitHub App).
 

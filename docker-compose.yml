@@ -1,0 +1,14 @@
+# Local Postgres for development: docker compose up -d
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: dirigo
+      POSTGRES_PASSWORD: dirigo
+      POSTGRES_DB: dirigo
+    ports:
+      - "5432:5432"
+    volumes:
+      - dirigo-db:/var/lib/postgresql/data
+volumes:
+  dirigo-db:

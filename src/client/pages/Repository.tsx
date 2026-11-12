@@ -32,8 +32,9 @@ function Column({ title, count, cards, unlisted }: { title: string; count: numbe
       <div className="board-col-head"><h2>{title}</h2><span>{count}</span></div>
       {count === 0 && <span className="muted" style={{ fontSize: 14, padding: '0 4px 4px' }}>Nothing here</span>}
       {visible.map((c) => <BoardCard key={c.key} card={c} />)}
-      {!open && more > 0 && <button className="cell-more" style={{ fontSize: 14, padding: '10px 4px' }} onClick={() => setOpen(true)}>Show {more} more</button>}
+      {!open && more > 0 && <button className="cell-more" aria-expanded="false" style={{ fontSize: 14, padding: '10px 4px' }} onClick={() => setOpen(true)}>Show {more} more</button>}
       {open && unlisted > 0 && <span className="cell-note">{plural(unlisted, 'more issue')} {unlisted === 1 ? 'is' : 'are'} counted but not listed in the sample data.</span>}
+      {open && <button className="cell-more" aria-expanded="true" style={{ fontSize: 14, padding: '10px 4px' }} onClick={() => setOpen(false)}>Show fewer</button>}
     </section>
   );
 }
