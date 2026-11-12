@@ -62,8 +62,9 @@ export function AllWork() {
   const q = useWork(query);
   const [selected, setSelected] = useState<string | null>(null);
 
+  // Built from the live address so two quick changes never overwrite each other.
   const set = (k: string, v: string | null) => {
-    const next = new URLSearchParams(params);
+    const next = new URLSearchParams(window.location.search);
     if (!v || v === 'everything' || (k === 'rows' && v === 'repository')) next.delete(k); else next.set(k, v);
     setParams(next, { replace: true });
   };
@@ -128,7 +129,12 @@ export function AllWork() {
                   </div>
                 ))}
               </div>
-              {v.rows.map((r) => (
+              {v.rows.every((r) => r.open === 0) && (
+                <div role="row" style={{ display: 'contents' }}>
+                  <span role="cell" className="cell-empty" style={{ gridColumn: '1 / -1', borderTop: '1px solid var(--color-line)' }}>Nothing matches these filters.</span>
+                </div>
+              )}
+              {v.rows.filter((r) => r.open > 0 || query.rows === 'repository').map((r) => (
                 <div key={r.key} role="row" style={{ display: 'contents' }}>
                   <div role="rowheader" className="grid-rowhead">
                     <span className="t"><StatusIcon tone={r.tone} />{r.title}</span>

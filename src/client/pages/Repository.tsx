@@ -71,7 +71,7 @@ export function Repository() {
           <div className="filters" role="group" aria-label="Filter the board">
             {v.filters.map((f) => (
               <button key={f.key} className={`qf qf-${f.key}`} aria-pressed={filter === f.key} disabled={f.count === 0 && filter !== f.key}
-                onClick={() => { const n = new URLSearchParams(params); if (f.key === 'everything') n.delete('filter'); else n.set('filter', f.key); setParams(n, { replace: true }); }}>
+                onClick={() => { const n = new URLSearchParams(window.location.search); if (f.key === 'everything') n.delete('filter'); else n.set('filter', f.key); setParams(n, { replace: true }); }}>
                 {f.label} · {f.count}
               </button>
             ))}

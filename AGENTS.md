@@ -1,6 +1,6 @@
 # Instructions for the coding agent
 
-Read `README.md` first for the reading order. These are the rules that hold for all work in this repository.
+Read `docs/00-handoff.md` first for the reading order, then `README.md` for how the code is laid out. These are the rules that hold for all work in this repository.
 
 ## Hard rules
 

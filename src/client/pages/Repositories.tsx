@@ -57,7 +57,7 @@ export function Repositories() {
                           </>
                         ) : <span className="muted" style={{ fontSize: 14 }}>No milestone with a due date</span>}
                       </div>
-                      <Link role="cell" className="go" to={path(`/repositories/${r.full_name}`)} aria-label={`Open ${r.name}`}><Chevron /></Link>
+                      <span role="cell" style={{ display: 'contents' }}><Link className="go" to={path(`/repositories/${r.full_name}`)} aria-label={`Open ${r.name}`}><Chevron /></Link></span>
                     </div>
                   ))}
                   <div role="row" style={{ display: 'contents' }}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useActions, usePaths, useSample, useSettings } from '../data';
 import { OkIcon, Page, PageHeader } from '../components';
@@ -6,11 +6,12 @@ import type { Settings } from '../../shared/types';
 import type { SettingsView } from '../../shared/api';
 import { plural } from '../../shared/dates';
 
-function Rules({ v }: { v: SettingsView }) {
+type Status = { tone: 'ok' | 'blocked'; text: string } | null;
+
+function Rules({ v, status, setStatus }: { v: SettingsView; status: Status; setStatus: (s: Status) => void }) {
   const actions = useActions();
   const [draft, setDraft] = useState<Settings>(v.settings);
-  const [status, setStatus] = useState<{ tone: 'ok' | 'blocked'; text: string } | null>(null);
-  useEffect(() => setDraft(v.settings), [v.settings]);
+
 
   const valid = Number.isInteger(draft.review_target_days) && draft.review_target_days >= 1 && draft.review_target_days <= 30
     && Number.isInteger(draft.stalled_after_days) && draft.stalled_after_days >= 1 && draft.stalled_after_days <= 60;
@@ -129,12 +130,13 @@ export function SettingsPage() {
   const q = useSettings();
   const path = usePaths();
   const actions = useActions();
+  const [status, setStatus] = useState<Status>(null);
   return (
     <Page q={q}>
       {(v) => (
         <div className="settings">
           <PageHeader title="Settings" lead="These rules decide what Dirigo calls late, stalled and in progress." />
-          <Rules v={v} />
+          <Rules key={JSON.stringify(v.settings)} v={v} status={status} setStatus={setStatus} />
           <section className="card-lg panel" style={{ gap: 6 }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '8px 16px', paddingBottom: 10 }}>
               <h2 className="section-title">Repositories you watch</h2>

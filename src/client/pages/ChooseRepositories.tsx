@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useActions, useAvailable, usePaths, useSample } from '../data';
 import { ArrowRight, ErrorState, Loading, Logo, Stepper } from '../components';
@@ -11,17 +11,15 @@ export function ChooseRepositories() {
   const sample = useSample();
   const navigate = useNavigate();
   const actions = useActions();
-  const [ticked, setTicked] = useState<Set<string> | null>(null);
+  const [override, setOverride] = useState<Set<string> | null>(null);
   const [view, setView] = useState<'suggested' | 'all'>('suggested');
   const [search, setSearch] = useState('');
   const [saving, setSaving] = useState(false);
   const [failure, setFailure] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (q.data && ticked === null) setTicked(new Set(q.data.repositories.filter((r) => r.ticked).map((r) => r.full_name)));
-  }, [q.data, ticked]);
-
   const data = q.data;
+  const initial = useMemo(() => new Set(data?.repositories.filter((r) => r.ticked).map((r) => r.full_name) ?? []), [data]);
+  const ticked = override ?? initial;
   const suggested = useMemo(() => data?.repositories.filter((r) => r.suggested) ?? [], [data]);
   const shown = useMemo(() => {
     const base = view === 'suggested' && !search ? suggested : data?.repositories ?? [];
@@ -45,8 +43,8 @@ export function ChooseRepositories() {
     }
   }
 
-  const toggle = (name: string) => setTicked((prev) => {
-    const next = new Set(prev ?? []);
+  const toggle = (name: string) => setOverride((prev) => {
+    const next = new Set(prev ?? initial);
     if (next.has(name)) next.delete(name); else next.add(name);
     return next;
   });

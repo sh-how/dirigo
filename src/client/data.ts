@@ -1,7 +1,7 @@
 // The client's only way to reach data: the app's own API. In sample mode the viewer's
 // choices are kept in this browser and sent with each request.
 
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import type { AvailableView, MeView, SettingsView } from '../shared/api';
 import type { Settings } from '../shared/types';
@@ -94,6 +94,7 @@ function useApi<T>(path: string, options: { refetchInterval?: number | false | (
   return useQuery<T, ApiFailure>({
     queryKey: [sample ? 'sample' : 'live', path],
     queryFn: () => call<T>(sample, path),
+    placeholderData: keepPreviousData,
     refetchInterval: options.refetchInterval
       ? (q) => (typeof options.refetchInterval === 'function' ? options.refetchInterval(q.state.data) : options.refetchInterval!)
       : undefined,

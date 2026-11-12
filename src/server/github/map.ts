@@ -58,7 +58,7 @@ function checks(pr: PullRequestNode): { state: ChecksState; failingSince: string
   let failing = 0;
   for (const c of roll.contexts?.nodes ?? []) {
     if (!c) continue;
-    let when: string | null = null;
+    let when: string | null;
     if (c.__typename === 'CheckRun') {
       const run = c as Extract<typeof c, { __typename: 'CheckRun' }>;
       if (run.conclusion && FAILED_CONCLUSIONS.has(run.conclusion)) when = run.completedAt ?? run.startedAt;

@@ -306,7 +306,7 @@ export function createApp(cfg: Config, live: Live | null): Hono {
     const raw = getCookie(c, OAUTH_COOKIE);
     deleteCookie(c, OAUTH_COOKIE, { path: '/auth' });
     if (c.req.query('error')) return c.redirect('/connect?error=cancelled');
-    let saved: { state?: string; verifier?: string } = {};
+    let saved: { state?: string; verifier?: string };
     try { saved = raw ? JSON.parse(raw) : {}; } catch { saved = {}; }
     const code = c.req.query('code');
     if (!code || !saved.state || !saved.verifier || saved.state !== c.req.query('state')) return c.redirect('/connect?error=expired');
