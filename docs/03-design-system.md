@@ -32,7 +32,7 @@ Calm, light and restrained. A soft stone background, white surfaces, dark evergr
 
 ### Dark theme
 
-Added at the product owner's request after the mockups. It switches with the operating system setting (`prefers-color-scheme`) and is defined entirely in the dark block of `design/tokens.css`: components use tokens only, never literal colours. It keeps the same three meanings (red blocked or late, amber waiting on you, green on track) and the same 4.5:1 minimum contrast for text. The brand green is lightened so links and primary buttons read on dark surfaces; text on brand and status fills turns dark. The light theme remains the reference design.
+Added at the product owner's request after the mockups. The reader picks System, Light or Dark under Appearance in Settings; System follows the operating system (`prefers-color-scheme`). `src/client/public/theme.js` sets `data-theme` on the page before it draws, and the theme is defined entirely in the `[data-theme='dark']` block of `design/tokens.css`: components use tokens only, never literal colours. It keeps the same three meanings (red blocked or late, amber waiting on you, green on track) and the same 4.5:1 minimum contrast for text. The brand green is lightened so links and primary buttons read on dark surfaces; text on brand and status fills turns dark. The light theme remains the reference design.
 
 ## The status system
 

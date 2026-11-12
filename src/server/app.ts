@@ -346,6 +346,7 @@ export function createApp(cfg: Config, live: Live | null): Hono {
     const index = readFileSync(resolve(clientDir, 'index.html'), 'utf8');
     app.use('/assets/*', serveStatic({ root: 'dist/client' }));
     app.use('/favicon.svg', serveStatic({ root: 'dist/client' }));
+    app.use('/theme.js', serveStatic({ root: 'dist/client' }));
     app.get('*', (c) => (c.req.path.startsWith('/api/') ? c.json({ error: { code: 'not_found', message: 'Not found.' } }, 404) : c.html(index)));
   }
 

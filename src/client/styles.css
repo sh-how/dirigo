@@ -496,7 +496,12 @@ input:not([type='checkbox']):focus, select:focus {
 .search { font-size: 16px; background: var(--color-surface); border-radius: var(--radius-control); padding: 0 14px; min-height: 48px; width: 100%; }
 .segmented { display: flex; gap: 4px; background: var(--color-segmented); border-radius: var(--radius-control); padding: 4px; }
 .segmented button { font-size: 14px; font-weight: 500; color: var(--color-muted); background: transparent; border: 0; border-radius: 7px; padding: 0 14px; min-height: 40px; cursor: pointer; }
-.segmented button[aria-pressed='true'] { font-weight: 600; color: var(--color-ink); background: var(--color-surface); }
+.segmented button[aria-pressed='true'] { font-weight: 600; color: var(--color-ink); background: var(--color-segmented-on); }
+.theme-switch { align-self: flex-start; }
+.theme-switch label { position: relative; display: flex; align-items: center; font-size: 15px; font-weight: 500; color: var(--color-muted); border-radius: 7px; padding: 0 18px; min-height: 40px; cursor: pointer; }
+.theme-switch label.is-on { font-weight: 600; color: var(--color-ink); background: var(--color-segmented-on); }
+.theme-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.theme-switch label:has(input:focus-visible) { outline: 3px solid var(--color-brand); outline-offset: 1px; }
 .pick-list { overflow: hidden; display: flex; flex-direction: column; }
 .pick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 16px 20px; cursor: pointer; }
 .pick + .pick { border-top: 1px solid var(--color-line); }

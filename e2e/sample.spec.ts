@@ -158,7 +158,33 @@ test('the app follows a dark system setting and keeps light as the default', asy
   await page.goto('/sample/today');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   const bg = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  expect(await bg()).toBe('rgb(244, 245, 241)');
+  await expect.poll(bg).toBe('rgb(244, 245, 241)');
   await page.emulateMedia({ colorScheme: 'dark' });
-  expect(await bg()).toBe('rgb(17, 21, 19)');
+  await expect.poll(bg).toBe('rgb(17, 21, 19)');
+});
+
+test('the Appearance switch picks light or dark, keeps the choice and can return to the system', async ({ page }) => {
+  const bg = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  await page.goto('/sample/settings');
+  const group = page.getByRole('radiogroup', { name: 'Appearance' });
+  await expect(group.getByRole('radio', { name: 'System' })).toBeChecked();
+
+  await group.getByText('Dark').click();
+  await expect.poll(bg).toBe('rgb(17, 21, 19)');
+  await page.reload();
+  await expect.poll(bg).toBe('rgb(17, 21, 19)');
+  await expect(page.getByRole('radiogroup', { name: 'Appearance' }).getByRole('radio', { name: 'Dark' })).toBeChecked();
+
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await page.getByRole('radiogroup', { name: 'Appearance' }).getByText('Light').click();
+  await expect.poll(bg).toBe('rgb(244, 245, 241)');
+
+  // Arrow keys move between the options, as in any radio group.
+  await page.getByRole('radio', { name: 'Light' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('radio', { name: 'Dark' })).toBeChecked();
+  await page.getByRole('radiogroup', { name: 'Appearance' }).getByText('System').click();
+  await expect.poll(bg).toBe('rgb(17, 21, 19)');
+  await page.emulateMedia({ colorScheme: 'light' });
+  await expect.poll(bg).toBe('rgb(244, 245, 241)');
 });

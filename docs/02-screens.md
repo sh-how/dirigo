@@ -125,11 +125,12 @@ A left sidebar, 210 px wide, on every signed-in screen:
 
 ## 10. Settings
 
-- **Job:** set the rules, manage watched repositories, manage the GitHub connection.
+- **Job:** set the rules, manage watched repositories, choose light or dark, manage the GitHub connection.
 - **Sections:**
   1. "Your rules": review is late after N days (default 2); work is stalled after N days without activity (default 5); what counts as in progress (four options); pace window for projections (14, 7 or 30 days). One "Save rules" button.
   2. "Repositories you watch": a list with "Stop watching" per repository and an "Add repository" link to screen 3.
-  3. "GitHub connection": who is connected, a reminder that access is read-only, and "Disconnect GitHub".
+  3. "Appearance" (added at the product owner's request): System, Light or Dark. System follows the device. The choice is kept in the browser, not on the account, and applies before the page draws.
+  4. "GitHub connection": who is connected, a reminder that access is read-only, and "Disconnect GitHub".
 - **Note:** these are the only changes a user makes inside Dirigo. None of them writes to GitHub.
 - **Not designed:** confirmation for "Disconnect GitHub" and for "Stop watching".
 

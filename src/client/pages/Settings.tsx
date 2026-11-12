@@ -6,6 +6,7 @@ import { Select } from '../Select';
 import type { Settings } from '../../shared/types';
 import type { SettingsView } from '../../shared/api';
 import { plural } from '../../shared/dates';
+import { getTheme, setTheme, type ThemeChoice } from '../theme';
 
 type Status = { tone: 'ok' | 'blocked'; text: string } | null;
 
@@ -64,6 +65,31 @@ function Rules({ v, status, setStatus }: { v: SettingsView; status: Status; setS
         <span role="status" className={`form-status${status ? ` tone-${status.tone}` : ''}`}>{status?.text}</span>
       </div>
     </form>
+  );
+}
+
+const THEMES: { value: ThemeChoice; label: string }[] = [
+  { value: 'system', label: 'System' },
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+];
+
+function Appearance() {
+  const [theme, setChoice] = useState<ThemeChoice>(getTheme);
+  return (
+    <section className="card-lg panel" style={{ gap: 12 }}>
+      <h2 className="section-title" id="theme-title">Appearance</h2>
+      <div className="segmented theme-switch" role="radiogroup" aria-labelledby="theme-title" aria-describedby="theme-note">
+        {THEMES.map((t) => (
+          <label key={t.value} className={theme === t.value ? 'is-on' : undefined}>
+            <input type="radio" name="theme" value={t.value} checked={theme === t.value}
+              onChange={() => { setTheme(t.value); setChoice(t.value); }} />
+            {t.label}
+          </label>
+        ))}
+      </div>
+      <span id="theme-note" className="muted" style={{ fontSize: 15 }}>System follows your device's light or dark setting. The choice is kept in this browser.</span>
+    </section>
   );
 }
 
@@ -147,6 +173,7 @@ export function SettingsPage() {
               </div>
             ))}
           </section>
+          <Appearance />
           <Connection v={v} />
         </div>
       )}
