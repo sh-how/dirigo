@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "concurrently -n server,client -c green,blue \"npm:dev:server\" \"npm:dev:client\"",
-    "dev:server": "tsc -p tsconfig.server.json && concurrently -r \"tsc -w --preserveWatchOutput -p tsconfig.server.json\" \"node --env-file-if-exists=.env --watch-path=dist/server dist/server/server/main.js --port 8787\"",
+    "dev:server": "tsc -p tsconfig.server.json --outDir dist/dev-server && concurrently -r \"tsc -w --preserveWatchOutput -p tsconfig.server.json --outDir dist/dev-server\" \"node --env-file-if-exists=.env --watch-path=dist/dev-server dist/dev-server/server/main.js --port 8787\"",
     "dev:client": "vite",
     "build": "tsc -p tsconfig.json --noEmit && vite build && tsc -p tsconfig.server.json",
     "start": "node dist/server/server/main.js",
