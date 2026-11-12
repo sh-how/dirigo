@@ -7,10 +7,11 @@ export default defineConfig({
   publicDir: 'public',
   build: { outDir: '../../dist/client', emptyOutDir: true },
   server: {
-    port: 5173,
+    port: 5180,
+    strictPort: true,
     proxy: {
-      '/api': 'http://localhost:8787',
-      '/auth': 'http://localhost:8787',
+      '/api/': 'http://localhost:8787',
+      '/auth/': 'http://localhost:8787',
     },
   },
 });

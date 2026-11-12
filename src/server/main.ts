@@ -7,6 +7,9 @@ import { createJobs, startWorkers } from './jobs.js';
 import { Store } from './store.js';
 
 const cfg = loadConfig();
+// `--port N` wins over PORT, so a dev runner that sets PORT for the client cannot clash.
+const portFlag = process.argv.indexOf('--port');
+if (portFlag > 0) cfg.port = Number(process.argv[portFlag + 1]);
 let live: Live | null = null;
 
 if (liveEnabled(cfg)) {

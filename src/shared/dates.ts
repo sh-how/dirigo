@@ -69,7 +69,7 @@ export function days(n: number): string {
 export function age(fromIso: string, today: string): string {
   const d = Math.max(0, daysBetween(fromIso, today));
   if (d === 0) return 'today';
-  if (d < 7) return days(d);
+  if (d < 14 && d !== 7) return days(d);
   if (d < 30) return plural(Math.floor(d / 7), 'week');
   if (d < 365) return plural(Math.floor(d / 30), 'month');
   return plural(Math.floor(d / 365), 'year');

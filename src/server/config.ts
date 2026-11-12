@@ -48,7 +48,7 @@ function github(env: NodeJS.ProcessEnv): GitHubConfig | null {
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   return {
     port: Number(env.PORT ?? 8787),
-    appUrl: (env.APP_URL ?? 'http://localhost:5173').replace(/\/$/, ''),
+    appUrl: (env.APP_URL ?? 'http://localhost:5180').replace(/\/$/, ''),
     production: env.NODE_ENV === 'production',
     databaseUrl: env.DATABASE_URL ?? null,
     github: github(env),
