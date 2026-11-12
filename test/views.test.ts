@@ -38,9 +38,9 @@ describe('Today', () => {
 
   it('lists decisions oldest first, each with an action', () => {
     expect(v.decisions.map((d) => text(d.context))).toEqual([
-      'lattice · your review was requested 4 days ago',
-      'web-app · changes were requested on your pull request 2 days ago',
-      'kit · your review was requested yesterday',
+      'lattice · pull request 491 · your review was requested 4 days ago',
+      'web-app · your pull request 744 · changes were requested 2 days ago',
+      'kit · pull request 101 · your review was requested yesterday',
     ]);
     expect(v.decisions.map((d) => d.link.label)).toEqual(['Review', 'Revise', 'Review']);
   });
@@ -135,8 +135,8 @@ describe('Repositories and one repository', () => {
     expect(v.sentence.startsWith('One stalled review is holding up v0.9.')).toBe(true);
     expect(v.filters.map((f) => f.count)).toEqual([16, 1, 1]);
     expect(v.columns.map((c) => c.count)).toEqual([9, 2, 2, 3]);
-    expect(text(v.columns[0].cards[0].board_meta)).toBe('Bug · opened 3 days ago · no owner yet');
-    expect(text(v.columns[3].cards[0].board_meta)).toBe('Approved, ready to merge');
+    expect(text(v.columns[0].cards[0].board_meta)).toBe('Issue 482 · Bug · opened 3 days ago · no owner yet');
+    expect(text(v.columns[3].cards[0].board_meta)).toMatch(/^Pull request \d+ · approved, ready to merge$/);
   });
 });
 

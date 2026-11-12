@@ -291,13 +291,13 @@ function decisionRow(c: Classified, ds: Dataset): DecisionRow {
   let action: string;
   let url = c.item.url ?? null;
   if (c.wait_reason === 'review') {
-    context = [{ text: `${repoName(c.item)} · your review was requested ` }, { text: when, strong: late, tone: late ? 'waiting' : undefined }];
+    context = [{ text: `${repoName(c.item)} · ${itemRef(c)} · your review was requested ` }, { text: when, strong: late, tone: late ? 'waiting' : undefined }];
     action = 'Review';
   } else if (c.wait_reason === 'changes_requested') {
-    context = [{ text: `${repoName(c.item)} · changes were requested on your pull request ${when}` }];
+    context = [{ text: `${repoName(c.item)} · your ${itemRef(c)} · changes were requested ${when}` }];
     action = 'Revise';
   } else {
-    context = [{ text: `${repoName(c.item)} · checks have been failing on your pull request since ${when}` }];
+    context = [{ text: `${repoName(c.item)} · your ${itemRef(c)} · checks have been failing since ${when}` }];
     action = failingChecksLabel(c.item);
     url = checksUrl(c.item);
   }
@@ -417,6 +417,7 @@ function byLine(item: Item, ds: Dataset): string {
 export function workCard(c: Classified, ds: Dataset): WorkCard {
   const it = c.item;
   const n = String(it.number);
+  const ref = `${capitalise(kindName(it))} ${n}`;
   let variant: CardVariant = 'plain';
   let label: string | null = null;
   let boardLabel: string | null = null;
@@ -432,7 +433,7 @@ export function workCard(c: Classified, ds: Dataset): WorkCard {
     if (c.waiting_on.length && !(c.wait_reason !== 'review' && c.waiting_on[0] === ds.viewer)) parts.push(`waiting on ${people(c.waiting_on, ds)}`);
     if (c.milestone) parts.push(`holds up ${c.milestone.title}`);
     meta = [{ text: parts.join(' · ') }];
-    board = [{ text: `${capitalise(kindName(it))} ${n}${c.waiting_on.length ? ` · waiting on ${people(c.waiting_on, ds)}` : ''}` }];
+    board = [{ text: `${ref}${c.waiting_on.length ? ` · waiting on ${people(c.waiting_on, ds)}` : ''}` }];
   } else if (c.waiting_on_you) {
     variant = 'waiting';
     label = waitingLabel(c, false);
@@ -442,28 +443,28 @@ export function workCard(c: Classified, ds: Dataset): WorkCard {
     } else {
       meta = [{ text: `${n} · ${byLine(it, ds)}` }];
     }
-    board = [{ text: `Pull request ${n} · ${byLine(it, ds)}` }];
+    board = [{ text: `${ref} · ${byLine(it, ds)}` }];
   } else if (it.kind === 'issue') {
     const who = owner(it, ds);
     const firstLabel = it.labels[0] ? `${capitalise(it.labels[0])} · ` : '';
     if (c.stage === 'backlog') {
       meta = [{ text: `${n} · ${age(it.created, ds.today)} · ` }, who ? { text: who } : { text: 'no owner', strong: true }];
-      board = [{ text: `${firstLabel}opened ${ago(it.created, ds.today, ds.now)}${who ? '' : ' · no owner yet'}` }];
+      board = [{ text: `${ref} · ${firstLabel}opened ${ago(it.created, ds.today, ds.now)}${who ? '' : ' · no owner yet'}` }];
     } else {
       const upd = `updated ${ago(it.last_activity, ds.today, ds.now)}`;
       meta = [{ text: `${n} · ${who ?? 'no owner'} · ${upd}` }];
-      board = [{ text: `${who ? capitalise(who) : 'No owner'} · ${upd}` }];
+      board = [{ text: `${ref} · ${who ?? 'no owner'} · ${upd}` }];
     }
   } else {
     const author = person(it.author, ds);
     if (c.ready_to_merge) {
       variant = 'ready';
       meta = [{ text: `${n} · ready to merge`, strong: true, tone: 'ok' }];
-      board = [{ text: 'Approved, ready to merge', strong: true, tone: 'ok' }];
+      board = [{ text: `${ref} · approved, ready to merge`, strong: true, tone: 'ok' }];
     } else if (c.stage === 'needs_review') {
       const who = it.author === ds.viewer ? 'yours' : `by ${author}`;
       meta = [{ text: `${n} · ${who} · with ${people(c.waiting_on, ds)} for ${days(c.wait_days ?? 0)}` }];
-      board = [{ text: `${capitalise(who)} · waiting on ${people(c.waiting_on, ds)} for ${days(c.wait_days ?? 0)}` }];
+      board = [{ text: `${ref} · ${who} · waiting on ${people(c.waiting_on, ds)} for ${days(c.wait_days ?? 0)}` }];
     } else {
       const state = c.pr_state === 'draft' ? 'draft'
         : c.pr_state === 'changes_requested' ? 'changes requested'
@@ -473,7 +474,7 @@ export function workCard(c: Classified, ds: Dataset): WorkCard {
       const who = it.author === ds.viewer ? 'yours' : author;
       meta = [{ text: `${n} · ${who} · ${state}` }];
       const chk = checksText(it);
-      board = [{ text: `${capitalise(who)} · ${state}${chk && c.pr_state === 'changes_requested' ? ` · ${chk}` : ''}` }];
+      board = [{ text: `${ref} · ${who} · ${state}${chk && c.pr_state === 'changes_requested' ? ` · ${chk}` : ''}` }];
     }
   }
 

@@ -73,7 +73,7 @@ A left sidebar, 210 px wide, on every signed-in screen:
   1. Date, headline, one supporting sentence with the other two counts.
   2. Three bucket tabs with large counts: Blocked, Needs your decision, On track. Together they account for every open item.
   3. Left column, "Blocked": one card per blocked item with a plain-language problem as its title, the item title and number, the repository, and three facts: what it holds up, who it is waiting on, since when. One or two links to GitHub.
-  4. Left column, "Needs your decision": one row per item waiting on the user with what was asked, how long ago, and one link named for the action ("Review", "Revise").
+  4. Left column, "Needs your decision": one row per item waiting on the user with its number, what was asked, how long ago, and one link named for the action ("Review", "Revise").
   5. Right column, "Will we ship on time?": one block per repository with status, next milestone, due date, days left, progress bar, percent done and a one-line projection.
 - **Behaviour:** the bucket tabs filter the left column. Repository names link to screen 7.
 - **States:** screens 11 and 12.
@@ -102,7 +102,7 @@ A left sidebar, 210 px wide, on every signed-in screen:
 ## 7. One repository
 
 - **Job:** work through a single repository's board.
-- **Content:** a back link; repository name with a status pill; a one-sentence reason; a milestone card (name, due date, days left, progress, projection); filters (Everything, Blocked, Waiting on me); a four-column board with the same card variants as screen 5; "Show N more" at the bottom of a long column.
+- **Content:** a back link; repository name with a status pill; a one-sentence reason; a milestone card (name, due date, days left, progress, projection); filters (Everything, Blocked, Waiting on me); a four-column board with the same card variants as screen 5, each card showing the item number ("Issue 482"); "Show N more" at the bottom of a long column.
 - **Not designed:** the header for a repository with no milestone.
 
 ## 8. Reviews
