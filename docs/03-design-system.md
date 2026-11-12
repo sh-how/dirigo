@@ -4,7 +4,7 @@ The mockups in `design/screens/` are the source of truth. This document names wh
 
 ## Direction
 
-Calm, light and restrained. A soft stone background, white surfaces, dark evergreen for the brand and primary actions, one typeface. Colour is reserved for status. There is no dark theme.
+Calm, light and restrained. A soft stone background, white surfaces, dark evergreen for the brand and primary actions, one typeface. Colour is reserved for status. A dark theme follows the operating system setting (see below).
 
 ## Logo
 
@@ -29,6 +29,10 @@ Calm, light and restrained. A soft stone background, white surfaces, dark evergr
 | Blocked | `--color-blocked` | `#BF3F27` | Blocked, late, past target |
 | Waiting | `--color-waiting-icon` and related | `#9A6200` | Waiting on the user |
 | On track | `--color-ok` | `#256B50` | On track, ready to merge, early |
+
+### Dark theme
+
+Added at the product owner's request after the mockups. It switches with the operating system setting (`prefers-color-scheme`) and is defined entirely in the dark block of `design/tokens.css`: components use tokens only, never literal colours. It keeps the same three meanings (red blocked or late, amber waiting on you, green on track) and the same 4.5:1 minimum contrast for text. The brand green is lightened so links and primary buttons read on dark surfaces; text on brand and status fills turns dark. The light theme remains the reference design.
 
 ## The status system
 

@@ -1,5 +1,8 @@
-/* Dirigo design tokens. Light theme only; no dark theme has been designed. */
+/* Dirigo design tokens. The light theme is the agreed design; the dark theme below follows
+   the operating system setting and keeps the same meanings: red blocked or late, amber
+   waiting on you, green on track, everything else neutral. */
 :root {
+  color-scheme: light;
   /* Surfaces */
   --color-bg: #F4F5F1;            /* page background, soft stone */
   --color-surface: #FFFFFF;       /* cards, sidebar, tables */
@@ -14,16 +17,26 @@
   /* Lines */
   --color-line: #E0E4DD;          /* card borders, row dividers */
   --color-line-strong: #B8BFB6;   /* input and secondary-button borders, dashed outlines */
+  --color-line-mid: #D5DAD2;      /* milestone timeline track */
 
   /* Brand and primary action */
   --color-brand: #1C5443;         /* logo, primary buttons, links, on-track progress */
   --color-brand-hover: #143E32;
   --color-brand-tint: #E4EFEA;    /* current navigation item */
   --color-brand-tint-row: #F1F7F4;/* ticked row when choosing repositories */
+  --color-brand-tint-strong: #D8E8E0; /* chosen option under the pointer in a select */
+  --color-on-brand: #FFFFFF;      /* text and icons on brand fills */
+  --color-segmented: #E6E9E3;     /* segmented control track */
+  --color-band: #1C5443;          /* closing band on the landing page */
+  --color-on-band: #FFFFFF;
+  --color-band-button: #FFFFFF;
+  --color-band-button-hover: #E4EFEA;
+  --color-band-button-text: #143E32;
 
   /* Status: blocked or late */
   --color-blocked: #BF3F27;       /* icon, text, border, late progress */
   --color-blocked-tint: #FAEAE5;  /* pill background */
+  --color-on-status: #FFFFFF;     /* marks and text drawn on a solid status colour */
 
   /* Status: waiting on you */
   --color-waiting-icon: #9A6200;
@@ -84,4 +97,43 @@ body {
   color: var(--color-ink);
   font: var(--text-body);
   font-variant-numeric: tabular-nums;
+}
+
+/* Dark theme. Every text pair keeps at least 4.5:1 contrast on the surfaces it sits on. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #111513;
+    --color-surface: #1A1F1C;
+    --color-surface-soft: #202622;
+    --color-fill: #2A312D;
+    --color-board-column: #151A17;
+    --color-ink: #E7ECE8;
+    --color-muted: #A4AEA8;
+    --color-line: #2D3530;
+    --color-line-strong: #646E68;
+    --color-line-mid: #3A433E;
+    --color-brand: #74C7A4;
+    --color-brand-hover: #95D7BB;
+    --color-brand-tint: #1F3A30;
+    --color-brand-tint-row: #1A2E27;
+    --color-brand-tint-strong: #28493C;
+    --color-on-brand: #0D1A15;
+    --color-segmented: #232A26;
+    --color-band: #1F3A30;
+    --color-on-band: #E7ECE8;
+    --color-band-button: #74C7A4;
+    --color-band-button-hover: #95D7BB;
+    --color-band-button-text: #0D1A15;
+    --color-blocked: #F2836B;
+    --color-blocked-tint: #3B201A;
+    --color-on-status: #1A0C08;
+    --color-waiting-icon: #E3AE45;
+    --color-waiting-text: #EDC36E;
+    --color-waiting-border: #B98A2C;
+    --color-waiting-tint: #352914;
+    --color-ok: #63C49A;
+    --shadow-preview: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+    --shadow-selected: 0 10px 24px -12px rgba(0, 0, 0, 0.8);
+  }
 }

@@ -57,3 +57,4 @@ Each of these is built behind the default shown and is easy to change. Please co
 | 27 | Which repositories are "suggested" and which are ticked by default? | Suggested: up to six readable repositories pushed to in the last 90 days, most recent first. Ticked: the top four, or the current watch list when there is one |
 | 28 | The fixture had no file counts or failing-check counts, which Reviews and Today show | Added `files_changed` and `failing_check_count` to `tools/build_fixture.py`; the rules do not use them |
 | 29 | Repository "last active" on Choose repositories | Uses the repository's last push, not the user's own last activity, which GitHub does not expose cheaply |
+| 30 | Should people be able to choose light or dark themselves? | The product owner asked for a dark mode. It follows the operating system setting, with no switch in Settings. A switch would be a new setting on screen 10 |

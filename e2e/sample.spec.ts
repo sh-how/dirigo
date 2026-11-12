@@ -153,3 +153,12 @@ test('the board selects work with the keyboard and match the design when open', 
   await page.mouse.click(5, 5);
   await expect(page.getByRole('listbox')).toHaveCount(0);
 });
+
+test('the app follows a dark system setting and keeps light as the default', async ({ page }) => {
+  await page.goto('/sample/today');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const bg = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  expect(await bg()).toBe('rgb(244, 245, 241)');
+  await page.emulateMedia({ colorScheme: 'dark' });
+  expect(await bg()).toBe('rgb(17, 21, 19)');
+});

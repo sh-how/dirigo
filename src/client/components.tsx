@@ -20,7 +20,7 @@ export function BlockedIcon({ size = 16 }: { size?: number }) {
   return (
     <svg className="icon" aria-hidden="true" width={size} height={size} viewBox="0 0 16 16">
       <circle cx="8" cy="8" r="8" fill="var(--color-blocked)" />
-      <rect x="4" y="7" width="8" height="2" rx="1" fill="#fff" />
+      <rect x="4" y="7" width="8" height="2" rx="1" fill="var(--color-on-status)" />
     </svg>
   );
 }
@@ -58,7 +58,7 @@ export function StatusIcon({ tone, size }: { tone: Tone | null; size?: number })
   return null;
 }
 
-export function ArrowRight({ color = '#fff' }: { color?: string }) {
+export function ArrowRight({ color = 'currentColor' }: { color?: string }) {
   return (
     <svg className="icon" aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 9h10M10 5l4 4-4 4" />
