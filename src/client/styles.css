@@ -295,12 +295,12 @@ input:not([type='checkbox']):focus, select:focus {
 /* ---- Work grid (All work) ------------------------------------------------ */
 
 .scroll-x { overflow-x: auto; position: relative; }
-.grid { display: grid; grid-template-columns: 150px repeat(4, minmax(200px, 1fr)); min-width: 1000px; }
+.grid { display: grid; grid-template-columns: minmax(150px, max-content) repeat(4, minmax(200px, 1fr)); min-width: 1000px; }
 .grid-colhead { padding: 16px 12px 14px; border-left: 1px solid var(--color-line); display: flex; flex-direction: column; }
 .grid-colhead .t { display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; }
 .grid-colhead .d { font-size: 13px; color: var(--color-muted); }
 .grid-colhead.is-empty .t { color: var(--color-muted); }
-.grid-rowhead { padding: 16px; border-top: 1px solid var(--color-line); display: flex; flex-direction: column; gap: 4px; }
+.grid-rowhead { max-width: 260px; padding: 16px; border-top: 1px solid var(--color-line); display: flex; flex-direction: column; gap: 4px; }
 .grid-rowhead .t { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; overflow-wrap: anywhere; }
 .grid-rowhead .s { font-size: 13px; color: var(--color-muted); }
 .grid-rowhead a { font-size: 14px; font-weight: 600; padding: 8px 0; }
