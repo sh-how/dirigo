@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useActions, usePaths, useSample, useSettings } from '../data';
 import { OkIcon, Page, PageHeader } from '../components';
+import { Select } from '../Select';
 import type { Settings } from '../../shared/types';
 import type { SettingsView } from '../../shared/api';
 import { plural } from '../../shared/dates';
@@ -49,18 +50,14 @@ function Rules({ v, status, setStatus }: { v: SettingsView; status: Status; setS
         <span id="stall-after-unit" className="muted">days without any activity</span>
       </div>
       <div className="rule col">
-        <label htmlFor="in-progress-rule">An issue is in progress when</label>
-        <select id="in-progress-rule" className="big-select" value={draft.in_progress_rule}
-          onChange={(e) => setDraft({ ...draft, in_progress_rule: e.target.value as Settings['in_progress_rule'] })}>
-          {v.in_progress_options.filter((o) => o.available).map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
-        </select>
+        <Select className="rule-select" size="large" label="An issue is in progress when" value={draft.in_progress_rule}
+          options={v.in_progress_options.filter((o) => o.available).map((o) => ({ value: o.value, label: o.label }))}
+          onChange={(x) => setDraft({ ...draft, in_progress_rule: x as Settings['in_progress_rule'] })} />
       </div>
       <div className="rule col">
-        <label htmlFor="pace-window">Project landing dates from the pace of the last</label>
-        <select id="pace-window" className="big-select" value={draft.pace_window_days}
-          onChange={(e) => setDraft({ ...draft, pace_window_days: Number(e.target.value) })}>
-          {v.pace_options.map((n) => <option key={n} value={n}>{n} days</option>)}
-        </select>
+        <Select className="rule-select" size="large" label="Project landing dates from the pace of the last" value={String(draft.pace_window_days)}
+          options={v.pace_options.map((n) => ({ value: String(n), label: `${n} days` }))}
+          onChange={(x) => setDraft({ ...draft, pace_window_days: Number(x) })} />
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 16 }}>
         <button type="submit" className="btn btn-primary btn-form">Save rules</button>

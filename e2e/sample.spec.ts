@@ -50,9 +50,11 @@ test('quick filters combine and a selected card links to GitHub', async ({ page 
   await page.getByRole('button', { name: /Parallelise segment merges/ }).click();
   await expect(page.getByRole('link', { name: /Open on GitHub/ })).toBeVisible();
   await page.getByRole('button', { name: 'Everything · 42' }).click();
-  await page.getByLabel('Label').selectOption('bug');
+  await page.getByRole('combobox', { name: 'Label' }).click();
+  await page.getByRole('option', { name: 'Bug' }).click();
   await expect(page.getByRole('button', { name: 'No owner · 5' })).toBeVisible();
-  await page.getByLabel('Rows').selectOption('milestone');
+  await page.getByRole('combobox', { name: 'Rows' }).click();
+  await page.getByRole('option', { name: 'By milestone' }).click();
   await expect(page.getByRole('rowheader', { name: /No milestone/ })).toBeVisible();
 });
 
@@ -129,4 +131,25 @@ test('an expanded cell or column can be collapsed again', async ({ page }) => {
   await page.getByRole('button', { name: 'Show 6 more' }).click();
   await page.getByRole('button', { name: 'Show fewer' }).click();
   await expect(page.getByRole('button', { name: 'Show 6 more' })).toBeVisible();
+});
+
+test('the board selects work with the keyboard and match the design when open', async ({ page }) => {
+  await page.goto('/sample/work');
+  const rows = page.getByRole('combobox', { name: 'Rows' });
+  await rows.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('listbox')).toBeVisible();
+  await expect(page.getByRole('option', { name: 'By repository' })).toHaveAttribute('aria-selected', 'true');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('listbox')).toHaveCount(0);
+  await expect(rows).toHaveText(/By person/);
+  await expect(rows).toBeFocused();
+  await page.keyboard.press('Space');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('listbox')).toHaveCount(0);
+  await expect(rows).toHaveText(/By person/);
+  await page.getByRole('combobox', { name: 'Person' }).click();
+  await page.mouse.click(5, 5);
+  await expect(page.getByRole('listbox')).toHaveCount(0);
 });

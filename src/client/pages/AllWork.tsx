@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { usePaths, useWork } from '../data';
+import { Select } from '../Select';
 import { BlockedIcon, GitHubLink, OkIcon, Page, PageHeader, Parts, StatusIcon, WaitingIcon } from '../components';
 import type { QuickFilter, RowGrouping, WorkCard, WorkCell, WorkRow } from '../../shared/views';
 import { plural } from '../../shared/dates';
@@ -97,27 +98,14 @@ export function AllWork() {
               ))}
             </div>
             <div className="board-controls">
-              <div className="field">
-                <label htmlFor="board-person">Person</label>
-                <select id="board-person" className="select" value={query.person ?? ''} onChange={(e) => set('person', e.target.value)}>
-                  {v.people.map((p) => <option key={p.value} value={p.value}>{p.label}</option>)}
-                </select>
-              </div>
-              <div className="field">
-                <label htmlFor="board-label">Label</label>
-                <select id="board-label" className="select" value={query.label ?? ''} onChange={(e) => set('label', e.target.value)}>
-                  {v.labels.map((p) => <option key={p.value} value={p.value}>{p.label}</option>)}
-                </select>
-              </div>
-              <div className="field">
-                <label htmlFor="board-group">Rows</label>
-                <select id="board-group" className="select" value={query.rows} onChange={(e) => set('rows', e.target.value)}>
-                  <option value="repository">By repository</option>
-                  <option value="person">By person</option>
-                  <option value="milestone">By milestone</option>
-                  <option value="none">No rows</option>
-                </select>
-              </div>
+              <Select label="Person" value={query.person ?? ''} options={v.people} onChange={(x) => set('person', x)} />
+              <Select label="Label" value={query.label ?? ''} options={v.labels} onChange={(x) => set('label', x)} />
+              <Select label="Rows" value={query.rows} onChange={(x) => set('rows', x)} options={[
+                { value: 'repository', label: 'By repository' },
+                { value: 'person', label: 'By person' },
+                { value: 'milestone', label: 'By milestone' },
+                { value: 'none', label: 'No rows' },
+              ]} />
             </div>
           </div>
 
