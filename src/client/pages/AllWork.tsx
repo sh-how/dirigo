@@ -96,7 +96,7 @@ export function AllWork() {
                 </button>
               ))}
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'flex-end' }}>
+            <div className="board-controls">
               <div className="field">
                 <label htmlFor="board-person">Person</label>
                 <select id="board-person" className="select" value={query.person ?? ''} onChange={(e) => set('person', e.target.value)}>
