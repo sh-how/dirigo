@@ -135,8 +135,10 @@ describe('Repositories and one repository', () => {
     expect(v.sentence.startsWith('One stalled review is holding up v0.9.')).toBe(true);
     expect(v.filters.map((f) => f.count)).toEqual([16, 1, 1]);
     expect(v.columns.map((c) => c.count)).toEqual([9, 2, 2, 3]);
-    expect(text(v.columns[0].cards[0].board_meta)).toBe('Issue 482 · Bug · opened 3 days ago · no owner yet');
-    expect(text(v.columns[3].cards[0].board_meta)).toMatch(/^Pull request \d+ · approved, ready to merge$/);
+    expect(v.columns[0].cards[0].board_ref).toBe('Issue 482');
+    expect(v.columns[0].cards[0].board_tags).toEqual(['Bug']);
+    expect(text(v.columns[0].cards[0].board_meta)).toBe('Opened 3 days ago · No owner yet');
+    expect(text(v.columns[3].cards[0].board_meta)).toBe('Approved, ready to merge');
   });
 });
 

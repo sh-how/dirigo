@@ -18,7 +18,13 @@ function BoardCard({ card }: { card: WorkCard }) {
         <span className={`bcard-label tone-${tone}`}>{tone === 'blocked' ? <BlockedIcon size={14} /> : <WaitingIcon size={14} />}{card.board_label}</span>
       )}
       <span className="bcard-title">{card.title}{card.url && <span className="visually-hidden"> (opens GitHub in a new tab)</span>}</span>
-      <span className={`bcard-meta${ok ? ' tone-ok' : ''}`}>{ok && <OkIcon size={14} />}<span><Parts parts={card.board_meta.map((p) => ({ ...p, tone: undefined, strong: false }))} /></span></span>
+      <span className="bcard-ref">
+        <span className="bcard-number">{card.board_ref}</span>
+        {card.board_tags.map((t) => <span key={t} className="tag">{t}</span>)}
+      </span>
+      {card.board_meta.length > 0 && (
+        <span className={`bcard-meta${ok ? ' tone-ok' : ''}`}>{ok && <OkIcon size={14} />}<span><Parts parts={card.board_meta.map((p) => ({ ...p, tone: undefined, strong: ok ? false : p.strong }))} /></span></span>
+      )}
     </Tag>
   );
 }

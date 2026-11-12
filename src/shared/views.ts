@@ -390,6 +390,10 @@ export interface WorkCard {
   meta: TextPart[];
   /** Label and line used on the single-repository board (screen 7). */
   board_label: string | null;
+  /** "Issue 407" or "Pull request 1214", shown on its own on the board. */
+  board_ref: string;
+  /** The item's GitHub labels, shown as neutral tags on the board. */
+  board_tags: string[];
   board_meta: TextPart[];
 }
 
@@ -414,6 +418,11 @@ function byLine(item: Item, ds: Dataset): string {
   return item.author === ds.viewer ? (item.draft ? 'your draft' : 'yours') : `by ${item.author}`;
 }
 
+/** " · No owner yet" in bold so a missing owner stands out, or " · M. Tanaka". */
+function ownerParts(who: string | null): TextPart[] {
+  return who ? [{ text: ` · ${capitalise(who)}` }] : [{ text: ' · ' }, { text: 'No owner yet', strong: true }];
+}
+
 export function workCard(c: Classified, ds: Dataset): WorkCard {
   const it = c.item;
   const n = String(it.number);
@@ -433,7 +442,7 @@ export function workCard(c: Classified, ds: Dataset): WorkCard {
     if (c.waiting_on.length && !(c.wait_reason !== 'review' && c.waiting_on[0] === ds.viewer)) parts.push(`waiting on ${people(c.waiting_on, ds)}`);
     if (c.milestone) parts.push(`holds up ${c.milestone.title}`);
     meta = [{ text: parts.join(' · ') }];
-    board = [{ text: `${ref}${c.waiting_on.length ? ` · waiting on ${people(c.waiting_on, ds)}` : ''}` }];
+    board = c.waiting_on.length ? [{ text: `Waiting on ${people(c.waiting_on, ds)}` }] : [];
   } else if (c.waiting_on_you) {
     variant = 'waiting';
     label = waitingLabel(c, false);
@@ -443,28 +452,27 @@ export function workCard(c: Classified, ds: Dataset): WorkCard {
     } else {
       meta = [{ text: `${n} · ${byLine(it, ds)}` }];
     }
-    board = [{ text: `${ref} · ${byLine(it, ds)}` }];
+    board = [{ text: capitalise(byLine(it, ds)) }];
   } else if (it.kind === 'issue') {
     const who = owner(it, ds);
-    const firstLabel = it.labels[0] ? `${capitalise(it.labels[0])} · ` : '';
     if (c.stage === 'backlog') {
       meta = [{ text: `${n} · ${age(it.created, ds.today, ds.now)} · ` }, who ? { text: who } : { text: 'no owner', strong: true }];
-      board = [{ text: `${ref} · ${firstLabel}opened ${ago(it.created, ds.today, ds.now)}${who ? '' : ' · no owner yet'}` }];
+      board = [{ text: `Opened ${ago(it.created, ds.today, ds.now)}` }, ...ownerParts(who)];
     } else {
       const upd = `updated ${ago(it.last_activity, ds.today, ds.now)}`;
       meta = [{ text: `${n} · ${who ?? 'no owner'} · ${upd}` }];
-      board = [{ text: `${ref} · ${who ?? 'no owner'} · ${upd}` }];
+      board = who ? [{ text: `${capitalise(who)} · ${upd}` }] : [{ text: 'No owner', strong: true }, { text: ` · ${upd}` }];
     }
   } else {
     const author = person(it.author, ds);
     if (c.ready_to_merge) {
       variant = 'ready';
       meta = [{ text: `${n} · ready to merge`, strong: true, tone: 'ok' }];
-      board = [{ text: `${ref} · approved, ready to merge`, strong: true, tone: 'ok' }];
+      board = [{ text: 'Approved, ready to merge', strong: true, tone: 'ok' }];
     } else if (c.stage === 'needs_review') {
       const who = it.author === ds.viewer ? 'yours' : `by ${author}`;
       meta = [{ text: `${n} · ${who} · with ${people(c.waiting_on, ds)} for ${days(c.wait_days ?? 0)}` }];
-      board = [{ text: `${ref} · ${who} · waiting on ${people(c.waiting_on, ds)} for ${days(c.wait_days ?? 0)}` }];
+      board = [{ text: `${capitalise(who)} · waiting on ${people(c.waiting_on, ds)} for ${days(c.wait_days ?? 0)}` }];
     } else {
       const state = c.pr_state === 'draft' ? 'draft'
         : c.pr_state === 'changes_requested' ? 'changes requested'
@@ -474,7 +482,7 @@ export function workCard(c: Classified, ds: Dataset): WorkCard {
       const who = it.author === ds.viewer ? 'yours' : author;
       meta = [{ text: `${n} · ${who} · ${state}` }];
       const chk = checksText(it);
-      board = [{ text: `${ref} · ${who} · ${state}${chk && c.pr_state === 'changes_requested' ? ` · ${chk}` : ''}` }];
+      board = [{ text: `${capitalise(who)} · ${state}${chk && c.pr_state === 'changes_requested' ? ` · ${chk}` : ''}` }];
     }
   }
 
@@ -482,6 +490,7 @@ export function workCard(c: Classified, ds: Dataset): WorkCard {
     key: c.key, number: it.number, title: it.title, url: it.url ?? null,
     repository: { name: repoName(it), full_name: it.repository },
     variant, label, meta, board_label: boardLabel, board_meta: board,
+    board_ref: ref, board_tags: it.kind === 'issue' ? it.labels.map(capitalise) : [],
   };
 }
 

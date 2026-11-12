@@ -102,7 +102,7 @@ A left sidebar, 210 px wide, on every signed-in screen:
 ## 7. One repository
 
 - **Job:** work through a single repository's board.
-- **Content:** a back link; repository name with a status pill; a one-sentence reason; a milestone card (name, due date, days left, progress, projection); filters (Everything, Blocked, Waiting on me); a four-column board with the same card variants as screen 5, each card showing the item number ("Issue 482"); "Show N more" at the bottom of a long column.
+- **Content:** a back link; repository name with a status pill; a one-sentence reason; a milestone card (name, due date, days left, progress, projection); filters (Everything, Blocked, Waiting on me); a four-column board with the same card variants as screen 5, each card showing the title, then the item number ("Issue 482") with its labels as neutral tags, then one line of state (age or last update, and owner, with a missing owner in bold); "Show N more" at the bottom of a long column.
 - **Not designed:** the header for a repository with no milestone.
 
 ## 8. Reviews
